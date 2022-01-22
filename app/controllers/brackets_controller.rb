@@ -1,5 +1,11 @@
 class BracketsController < ApplicationController
 
+  before_action :authenticate_user!
+
+  def new
+    render :new
+  end
+
   def index
     @brackets = Bracket.all
   end
@@ -39,7 +45,9 @@ class BracketsController < ApplicationController
   end
 
   private
-
-  params.require(:bracket).permit(:name, :organizer_id, :usernames, :size)
+  
+  def bracket_params
+    params.require(:bracket).permit(:name, :organizer_id, :usernames, :size)
+  end
 
 end

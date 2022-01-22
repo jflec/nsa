@@ -1,0 +1,9 @@
+<h1>bracket new page</h1>
+<%= form_for(Bracket.new) do |form| %>
+    <%= label_tag :name, "Bracket Name" %>
+    <%= form.text_field :name %>
+    <%= label_tag :size, "Participant Count" %>
+    <%= form.text_field :size %>
+    <%= form.hidden_field :organizer_id, value: current_user.id %>
+    <%= submit_tag 'Create Bracket'%>
+<% end %>

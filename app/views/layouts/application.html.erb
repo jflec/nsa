@@ -11,6 +11,21 @@
   </head>
 
   <body>
+      <div id="navbar-container">
+        <%= link_to "/" do %>
+          Night Shift Arcade
+        <% end %>
+        
+        <ul id="nav-menu">
+          <%= link_to "/users/sign_up" do %>
+            Sign Up
+          <% end %>
+          <%= link_to "/users/sign_in" do %>
+            Sign In
+          <% end %>
+        </ul>
+      </div>
+
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
     <%= yield %>
