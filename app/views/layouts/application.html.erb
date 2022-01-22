@@ -11,23 +11,29 @@
   </head>
 
   <body>
-      <div id="navbar-container">
-        <%= link_to "/" do %>
-          Night Shift Arcade
-        <% end %>
-        
+    <div id="navbar-container">
+      <%= link_to "/" do %>
+        Night Shift Arcade
+      <% end %>
+      <% if !current_user %>
         <ul id="nav-menu">
-          <%= link_to "/users/sign_up" do %>
+          <%= link_to new_user_registration_path do %>
             Sign Up
           <% end %>
-          <%= link_to "/users/sign_in" do %>
+          <%= link_to new_user_session_path do %>
             Sign In
           <% end %>
         </ul>
-      </div>
+      <% else %>
+        <%= current_user.username %>
+        <%= button_to destroy_user_session_path, method: 'delete' do %>
+          Sign Out
+        <% end %>
+      <% end %>
+    </div>
 
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>
 </html>
