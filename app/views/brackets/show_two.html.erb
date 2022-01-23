@@ -1,7 +1,0 @@
-<%= form_for(@bracket) do |form| %>
-    <% @bracket.size.to_i.times do |input| %>
-        <%= label_tag :name, "Participant Name" %>
-        <%= form.text_field :usernames %>
-    <% end %>
-    <%= submit_tag 'Finish bracket' %>
-<% end %>

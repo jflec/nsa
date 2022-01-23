@@ -19,7 +19,7 @@ class BracketsController < ApplicationController
 
     if @bracket.save
       flash[:notice] = "Bracket saved"
-      render "brackets/show_two"
+      render @bracket
     else
       flash[:alert] = @bracket.errors.full_messages
       render :new
