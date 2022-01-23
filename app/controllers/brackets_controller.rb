@@ -19,7 +19,7 @@ class BracketsController < ApplicationController
 
     if @bracket.save
       flash[:notice] = "Bracket saved"
-      redirect_to :show_two
+      render "brackets/show_two"
     else
       flash[:alert] = @bracket.errors.full_messages
       render :new
@@ -49,7 +49,7 @@ class BracketsController < ApplicationController
   private
   
   def bracket_params
-    params.require(:bracket).permit(:name, :organizer_id, :usernames, :size)
+    params.require(:bracket).permit(:name, :user_id, :usernames, :size)
   end
 
 end
