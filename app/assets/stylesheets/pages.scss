@@ -6,3 +6,20 @@ body {
   background-color: rgb(10, 10, 10);
   color: white;
 }
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(10, 10, 10);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(255, 255, 255);
+  border-radius: 50px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(223, 223, 223);
+}
