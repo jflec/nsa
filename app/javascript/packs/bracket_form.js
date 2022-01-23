@@ -13,7 +13,6 @@ const BracketForm = () => {
 
   const handleChange = (e) => {
     setUserCount(parseInt(e.target.value));
-    console.log(userCount);
   };
 
   return (
@@ -24,6 +23,13 @@ const BracketForm = () => {
         <input type="text" />
         <label>Participant Count</label>
         <input type="text" onChange={handleChange} />
+        {Array.from(userCount).map(() => {
+          return (
+            <div>
+              <input type="text"></input>
+            </div>
+          );
+        })}
         <input type="submit" />
       </form>
     </div>
