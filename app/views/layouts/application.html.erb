@@ -16,15 +16,15 @@
   <body>
     <div id="navbar-container">
       <%= link_to "/" do %>
-        Night Shift Arcade
+        <h1 id="logo">Night Shift Arcade</h1>
       <% end %>
       <% if !current_user %>
         <ul id="nav-menu">
           <%= link_to new_user_registration_path do %>
-            Sign Up
+            <p class="nav-menu-item">Sign Up</p>
           <% end %>
           <%= link_to new_user_session_path do %>
-            Sign In
+            <p class="nav-menu-item">Sign In</p>
           <% end %>
         </ul>
       <% else %>
