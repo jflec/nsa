@@ -1,0 +1,38 @@
+.sign-up-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-family: 'Work Sans', sans-serif;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.field input {
+  padding: 10px 20px;
+  border-radius: 50px;
+  background-color: rgb(22, 22, 22);
+  border: 2px solid rgb(22, 22, 22);
+  color: white;
+  font-family: 'Work Sans', sans-serif;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.field input:focus {
+  transition: 0.2s;
+  transform: scale(1.05);
+  outline: none !important;
+  border: 2px solid #301252;
+}
+
+.field-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
