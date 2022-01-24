@@ -1,0 +1,5 @@
+<%= @user.username %>
+<%= @user.slug %>
+<% @user.brackets.each do |bracket| %>
+    <%= bracket.name %>
+<% end %>

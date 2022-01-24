@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :brackets
   devise_for :users
+  resources :users, only: [:show], param: :slug
 
   authenticated :user do 
     root 'pages#index', as: :authenticated_root

@@ -5,4 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :brackets
+
+  before_create :slugify
+
+  def slugify
+    self.slug = username.parameterize
+  end
 end
