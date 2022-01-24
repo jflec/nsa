@@ -3,35 +3,53 @@ import { render } from 'react-dom';
 import axios from 'axios';
 
 const BracketForm = () => {
-  const [users, setUsers] = useState([]);
-  const [userCount, setUserCount] = useState(0);
+  const [values, setValues] = useState({
+    name: '',
+    size: 0,
+    usernames: [],
+    user_id: '',
+  });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    axios.post('/brackets', {});
+  const handleBracketNameInputChange = (e) => {
+    e.persist();
+    setValues((values) => ({
+      ...values,
+      name: e.target.value,
+    }));
   };
 
-  const handleChange = (e) => {
-    setUserCount(parseInt(e.target.value));
+  const handleBracketSizeInputChange = (e) => {
+    e.persist();
+    setValues((values) => ({
+      ...values,
+      size: e.target.value,
+    }));
+    console.log(values.size);
   };
 
   return (
     <div id="bracket-form">
-      <h1>Create Bracket</h1>
-      <form onSubmit={handleSubmit}>
-        <label>Bracket Name</label>
-        <input type="text" />
-        <label>Participant Count</label>
-        <input type="text" onChange={handleChange} />
-        {Array.from(userCount).map(() => {
-          return (
-            <div>
-              <input type="text"></input>
-            </div>
-          );
-        })}
-        <input type="submit" />
-      </form>
+      <input
+        id="bracket-name"
+        type="text"
+        placeholder="Bracket Name"
+        name="name"
+        value={values.name}
+        onChange={handleBracketNameInputChange}
+      />
+      <input
+        id="bracket-size"
+        type="text"
+        placeholder="Bracket Size"
+        name="size"
+        value={values.size}
+        onChange={handleBracketSizeInputChange}
+      />
+      {values.size > 0
+        ? [...Array(parseInt(values.size))].map((e, i) => {
+            return <input type="text" key={i} />;
+          })
+        : null}
     </div>
   );
 };
