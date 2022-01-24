@@ -20,11 +20,23 @@ const BracketForm = () => {
 
   const handleBracketSizeInputChange = (e) => {
     e.persist();
+    if (e.target.value > 128) {
+      e.target.value = 128;
+    }
+
     setValues((values) => ({
       ...values,
       size: e.target.value,
     }));
-    console.log(values.size);
+  };
+
+  const handleUsernameInputSubmit = (e) => {
+    e.persist();
+    setValues((values) => ({
+      ...values,
+      usernames: [...values.usernames, e.target.value],
+    }));
+    console.log(values.usernames);
   };
 
   return (
@@ -39,7 +51,9 @@ const BracketForm = () => {
       />
       <input
         id="bracket-size"
-        type="text"
+        type="number"
+        min="1"
+        max="128"
         placeholder="Bracket Size"
         name="size"
         value={values.size}
@@ -47,7 +61,9 @@ const BracketForm = () => {
       />
       {values.size > 0
         ? [...Array(parseInt(values.size))].map((e, i) => {
-            return <input type="text" key={i} />;
+            return (
+              <input type="text" key={i} onChange={handleUsernameInputSubmit} />
+            );
           })
         : null}
     </div>
