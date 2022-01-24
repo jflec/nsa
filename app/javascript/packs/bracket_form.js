@@ -8,6 +8,8 @@ const BracketForm = () => {
     size: 0,
     usernames: [],
     user_id: '',
+    team_size: 2,
+    teams: 0,
   });
 
   const handleBracketNameInputChange = (e) => {
@@ -30,14 +32,39 @@ const BracketForm = () => {
     }));
   };
 
-  const handleUsernameInputSubmit = (e) => {
+  const handleBracketTeamSizeInputChange = (e) => {
     e.persist();
+    if (e.target.value > 64) {
+      e.target.value = 64;
+    }
+
+    if (e.target.value <= 0) {
+      e.target.value = 1;
+    }
+
     setValues((values) => ({
       ...values,
-      usernames: [...values.usernames, e.target.value],
+      team_size: e.target.value,
     }));
-    console.log(values.usernames);
+
+    teamMaker();
   };
+
+  const teamMaker = () => {
+    setValues((values) => ({
+      ...values,
+      teams: Math.floor(values.size / values.team_size),
+    }));
+  };
+
+  // const handleUsernameInputSubmit = (e) => {
+  //   e.persist();
+  //   setValues((values) => ({
+  //     ...values,
+  //     usernames: [...values.usernames, e.target.value],
+  //   }));
+  //   console.log(values.usernames);
+  // };
 
   return (
     <div id="bracket-form">
@@ -49,6 +76,7 @@ const BracketForm = () => {
         value={values.name}
         onChange={handleBracketNameInputChange}
       />
+
       <input
         id="bracket-size"
         type="number"
@@ -59,13 +87,33 @@ const BracketForm = () => {
         value={values.size}
         onChange={handleBracketSizeInputChange}
       />
-      {values.size > 0
-        ? [...Array(parseInt(values.size))].map((e, i) => {
+
+      <input
+        id="bracket-team-size"
+        type="number"
+        min="2"
+        max={values.size / 2}
+        placeholder="Team Size"
+        name="team size"
+        onChange={handleBracketTeamSizeInputChange}
+      />
+
+      {values.teams > 0 ? (
+        <div id="bracket-participant-container">
+          {[...Array(parseInt(values.teams))].map((e, i) => {
             return (
-              <input type="text" key={i} onChange={handleUsernameInputSubmit} />
+              <div className="bracket-team">
+                <h1>Team {i + 1}</h1>
+                {values.team_size > 0
+                  ? [...Array(parseInt(values.team_size))].map((j, k) => {
+                      return <input className="bracket-participant" />;
+                    })
+                  : null}
+              </div>
             );
-          })
-        : null}
+          })}
+        </div>
+      ) : null}
     </div>
   );
 };
