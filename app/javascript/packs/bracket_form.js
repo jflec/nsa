@@ -5,11 +5,11 @@ import axios from 'axios';
 const BracketForm = () => {
   const [values, setValues] = useState({
     name: '',
-    size: 0,
     usernames: [],
     user_id: '',
-    team_size: 2,
-    teams: 0,
+    participant_count: 0,
+    team_size: 0,
+    team_count: 0,
   });
 
   const handleBracketNameInputChange = (e) => {
@@ -22,13 +22,13 @@ const BracketForm = () => {
 
   const handleBracketSizeInputChange = (e) => {
     e.persist();
-    if (e.target.value > 128) {
-      e.target.value = 128;
+    if (e.target.value > 64) {
+      e.target.value = 64;
     }
 
     setValues((values) => ({
       ...values,
-      size: e.target.value,
+      team_count: e.target.value,
     }));
   };
 
@@ -53,7 +53,7 @@ const BracketForm = () => {
   const teamMaker = () => {
     setValues((values) => ({
       ...values,
-      teams: Math.floor(values.size / values.team_size),
+      participant_count: values.team_size * values.team_count,
     }));
   };
 
@@ -73,7 +73,6 @@ const BracketForm = () => {
         type="text"
         placeholder="Bracket Name"
         name="name"
-        value={values.name}
         onChange={handleBracketNameInputChange}
       />
 
@@ -84,7 +83,6 @@ const BracketForm = () => {
         max="128"
         placeholder="Bracket Size"
         name="size"
-        value={values.size}
         onChange={handleBracketSizeInputChange}
       />
 
@@ -92,15 +90,15 @@ const BracketForm = () => {
         id="bracket-team-size"
         type="number"
         min="2"
-        max={values.size / 2}
+        max="64"
         placeholder="Team Size"
         name="team size"
         onChange={handleBracketTeamSizeInputChange}
       />
 
-      {values.teams > 0 ? (
+      {values.team_count > 0 ? (
         <div id="bracket-participant-container">
-          {[...Array(parseInt(values.teams))].map((e, i) => {
+          {[...Array(parseInt(values.team_count))].map((e, i) => {
             return (
               <div className="bracket-team">
                 <h1>Team {i + 1}</h1>
