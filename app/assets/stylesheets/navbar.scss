@@ -58,3 +58,25 @@
   transition: 0.2s;
   font-size: 16px;
 }
+
+#nav-menu i {
+  font-size: 24px;
+  color: white;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+#nav-menu i:hover {
+  transition: 0.2s;
+  color: rgb(185, 185, 185);
+}
+
+#nav-menu button {
+  font-family: 'Work Sans', sans-serif;
+  color: white;
+  padding: 10px 30px;
+  border: 2px solid white;
+  border-radius: 50px;
+  transition: 0.2s;
+  background-color: transparent;
+}
